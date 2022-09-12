@@ -173,7 +173,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sentimiento-api/prod/1662490763630-2022-09-06T18:59:23.630Z/warmUpPluginDefault.zip"
+          "S3Key": "serverless/sentimiento-api/prod/1663017833626-2022-09-12T21:23:53.626Z/warmUpPluginDefault.zip"
         },
         "Handler": ".warmup/default/index.warmUp",
         "Runtime": "nodejs16.x",
@@ -198,7 +198,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ImageUri": "852736037849.dkr.ecr.us-west-1.amazonaws.com/sentimiento-api@sha256:4f65acbb0b4da90bf22a01564954f2705b21a9a2665e442831fbbd410781246a"
+          "ImageUri": "852736037849.dkr.ecr.us-west-1.amazonaws.com/sentimiento-api@sha256:edda3c97dbc612d3cbab897c2afeece9c0539425f9136f442d729d255329ea7f"
         },
         "PackageType": "Image",
         "FunctionName": "sentimiento-api",
@@ -374,7 +374,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1662490728085": {
+    "ApiGatewayDeployment1663017816597": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {

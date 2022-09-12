@@ -20,7 +20,7 @@ See https://pydantic-docs.helpmanual.io/usage/settings/
 
 Note, complex types like lists are read as json-encoded strings.
 """
-from typing import Literal
+from typing import Dict, List, Literal
 
 from pydantic import AnyHttpUrl, BaseSettings, EmailStr, PostgresDsn, validator
 
@@ -34,8 +34,8 @@ class Settings(BaseSettings):
     SECURITY_BCRYPT_ROUNDS: int = 12
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 11520  # 8 days
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 40320  # 28 days
-    BACKEND_CORS_ORIGINS: list[AnyHttpUrl] = []
-    ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1"]
+    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
 
     # POSTGRESQL DEFAULT DATABASE
     DATABASE_HOSTNAME: str
@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     
 
     @validator("SQLALCHEMY_DATABASE_URI")
-    def _assemble_db_connection(cls, v: str, values: dict[str, str]) -> str:
+    def _assemble_db_connection(cls, v: str, values: Dict[str, str]) -> str:
         return PostgresDsn.build(
             scheme="postgresql+asyncpg",
             user=values["DATABASE_USER"],

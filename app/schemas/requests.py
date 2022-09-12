@@ -1,5 +1,5 @@
 import datetime
-from typing import Union
+from typing import Dict, Union
 from pydantic import BaseModel, EmailStr
 
 class UserCreate(BaseModel):
@@ -20,3 +20,7 @@ class KidCreate(BaseModel):
     birthday: datetime.date
     has_asperger: bool = False
     gender: str = 'M'
+
+class AnalysisResult(BaseModel):
+    emocion: str
+    probs: Dict

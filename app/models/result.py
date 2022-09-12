@@ -1,6 +1,7 @@
 import datetime
 from dataclasses import dataclass, field
-from sqlalchemy import Boolean, Column, Integer, String, DateTime
+from typing import Any, Dict
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, JSON
 from sqlalchemy.orm import relationship
 
 from app.models.base import Base, mapper_registry, now
@@ -15,6 +16,18 @@ class Result(Base):
     id: int = field(
         init=False,
         metadata={"sa": Column(Integer, primary_key=True)},
+    )
+
+    kid_id: int = field(
+        metadata={"sa": Column(Integer, ForeignKey("kid.id"), nullable=False)},
+    )
+
+    text: str = field(
+        metadata={"sa": Column(String(150), nullable=False)}
+    )
+
+    analysis: Dict[str, Any] = field(
+        default=None, metadata={"sa": Column(JSON, nullable=False)}
     )
 
     created_at: datetime.datetime = field(
