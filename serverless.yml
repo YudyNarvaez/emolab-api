@@ -1,0 +1,28 @@
+service: sentimiento-api
+
+provider:
+  name: aws
+  region: us-west-1
+  versionFunctions: false
+  apiName: sentimiento-api
+  stage: prod
+
+plugins:
+  - serverless-plugin-warmup
+  
+custom:
+  warmup:
+    default:
+      enabled: true
+      concurrency: 0
+
+functions:
+  app:
+    name: sentimiento-api
+    warmup:
+      default:
+        enabled: true
+    image: 852736037849.dkr.ecr.us-west-1.amazonaws.com/sentimiento-api:latest
+    events:
+      - http: 'ANY /'
+      - http: 'ANY /{proxy+}'
